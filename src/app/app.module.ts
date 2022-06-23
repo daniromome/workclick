@@ -32,12 +32,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
-    EntityDataModule.forRoot(entityConfig),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage())
+    EntityDataModule.forRoot(entityConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
