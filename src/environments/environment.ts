@@ -11,6 +11,10 @@ export const environment = {
     authDomain: 'workclick.firebaseapp.com',
     messagingSenderId: '414792500962',
   },
+  defaultDataServiceConfig: {
+    root: 'http://localhost:3000/api',
+    timeout: 3000
+  },
   production: false
 };
 

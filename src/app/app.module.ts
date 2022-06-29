@@ -8,9 +8,12 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { EntityDataModule } from '@ngrx/data';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
 import { SharedModule } from './shared/shared.module';
+import { reducers, metaReducers } from './reducers/index';
+import { entityConfig } from './entity-metadata';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,22 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot(),
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
-    StoreModule,
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router', routerState: RouterState.Minimal }),
+    EntityDataModule.forRoot(entityConfig),
     SharedModule
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+    [{ provide: DefaultDataServiceConfig, useValue: environment.defaultDataServiceConfig }],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
