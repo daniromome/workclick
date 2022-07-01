@@ -1,1 +1,30 @@
-<p>landing works!</p>
+<mat-toolbar class="fixed-top">
+  <img src="./assets/workclick.svg" class="logo">
+  <span class="spacer"></span>
+</mat-toolbar>
+<div class="grid">
+  <swiper
+    [navigation]="true"
+    [pagination]="{ clickable: true }"
+  >
+    <ng-template swiperSlide>Slide 1</ng-template>
+    <ng-template swiperSlide>Slide 2</ng-template>
+    <ng-template swiperSlide>Slide 3</ng-template>
+    <ng-template swiperSlide>Slide 4</ng-template>
+    <ng-template swiperSlide>Slide 5</ng-template>
+    <ng-template swiperSlide>Slide 6</ng-template>
+  </swiper>
+  <div class="content-container">
+
+  </div>
+  <div class="content-container-cards">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+  </div>
+  <div class="content-container">
+
+  </div>
+</div>
+<div class="footer"></div>
+

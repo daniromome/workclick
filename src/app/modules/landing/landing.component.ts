@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+  }
 
   ngOnInit(): void {
   }

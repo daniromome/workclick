@@ -5,6 +5,8 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { SwiperModule } from 'swiper/angular';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { SwiperModule } from 'swiper/angular';
   imports: [
     CommonModule,
     LandingRoutingModule,
-    SwiperModule
+    SwiperModule,
+    MatToolbarModule
   ]
 })
 export class LandingModule { }
