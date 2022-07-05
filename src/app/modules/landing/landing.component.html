@@ -1,26 +1,129 @@
-<mat-toolbar class="fixed-top">
+<mat-toolbar class="fixed-top mat-elevation-z3">
   <img src="./assets/workclick.svg" class="logo">
+  <button mat-button color="primary">Nosotros</button>
+  <button mat-button color="primary">Nuestros servicios</button>
+  <button mat-button color="primary">Contacto</button>
   <span class="spacer"></span>
+  <button mat-stroked-button color="primary">Registrarme</button>
+  <button mat-stroked-button color="primary">Iniciar sesión</button>
 </mat-toolbar>
 <div class="grid">
   <swiper
     [navigation]="true"
     [pagination]="{ clickable: true }"
   >
-    <ng-template swiperSlide>Slide 1</ng-template>
-    <ng-template swiperSlide>Slide 2</ng-template>
-    <ng-template swiperSlide>Slide 3</ng-template>
-    <ng-template swiperSlide>Slide 4</ng-template>
-    <ng-template swiperSlide>Slide 5</ng-template>
-    <ng-template swiperSlide>Slide 6</ng-template>
+    <ng-template *ngFor="let image of images" swiperSlide><div class="swiper-image" [style.background]="image"></div></ng-template>
   </swiper>
   <div class="content-container">
-
+    <div class="info"></div>
+        
   </div>
   <div class="content-container-cards">
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
+    <div class="card">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Clasico</mat-card-title>
+          <mat-card-subtitle>$200.00</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/undraw_updated_resume_re_7r9j (1).svg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <ul class="list">
+            <li>
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+            <li >
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+            <li>
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+        </ul>
+            <br>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary">Ver más</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="card">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Clasico</mat-card-title>
+          <mat-card-subtitle>$200.00</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/undraw_completing_re_i7ap.svg" alt="">
+        <mat-card-content>
+          <ul class="list">
+            <li>
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+            <li >
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+            <li>
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+        </ul>
+            <br>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary">Ver más</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="card">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/undraw_interview_re_e5jn.svg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <ul class="list">
+            <li>
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+            <li >
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+            <li>
+                <mat-icon color="primary">done</mat-icon>
+                Item one
+            </li>
+        </ul>
+            <br>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary">Ver más</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
   <div class="content-container">
 
