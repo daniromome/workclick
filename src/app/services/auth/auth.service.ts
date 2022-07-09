@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, switchMap, scheduled, asyncScheduler } from 'rxjs';
 import { User } from '../../models/user.model';
-import firebase from 'firebase/compat';
+import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
