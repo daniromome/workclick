@@ -1,14 +1,4 @@
-$toolbar-height: 4rem;
-
-.fixed-top {
-  position: fixed;
-  z-index: 2;
-  height: $toolbar-height;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}
+@import '../../shared/styles/layout';
 
 .logo {
   height: 2rem;
@@ -16,11 +6,13 @@ $toolbar-height: 4rem;
 }
 
 .grid {
-  display: grid;
-  grid-template-rows: repeat(4, 570px);
-  gap: 2.5rem;
-  background-color: gray;
-  padding: $toolbar-height 0 2.5rem 0;
+  &-landing {
+    @extend .grid;
+    grid-template-rows: repeat(4, 570px);
+    gap: 2.5rem;
+    background-color: gray;
+    padding: $toolbar-height 0 2.5rem 0;
+  }
 }
 
 .content-container {
