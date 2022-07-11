@@ -2,61 +2,28 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+@use 'app/shared/styles/layout' as layout;
+@use 'app/shared/styles/palette' as palette;
+@use 'app/shared/styles/typography' as typography;
 // Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
 
 @import '~swiper/css';
 @import '~swiper/css/navigation';
 @import '~swiper/css/pagination';
 
-@import './app/shared/styles/layout';
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$workclick-primary: mat.define-palette(mat.$indigo-palette);
-$workclick-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$workclick-warn: mat.define-palette(mat.$red-palette);
-
-$workclick-typography: mat.define-typography-config(
-  $font-family: "Montserrat",
-  $display-4: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
-  $display-3: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
-  $display-2: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
-  $display-1: mat.define-typography-level(34px, 40px, 400),
-  $headline: mat.define-typography-level(24px, 32px, 400),
-  $title: mat.define-typography-level(20px, 32px, 500),
-  $subheading-2: mat.define-typography-level(16px, 28px, 400),
-  $subheading-1: mat.define-typography-level(15px, 24px, 400),
-  $body-2: mat.define-typography-level(14px, 24px, 500),
-  $body-1: mat.define-typography-level(14px, 20px, 400),
-  $caption: mat.define-typography-level(12px, 20px, 400),
-  $button: mat.define-typography-level(14px, 14px, 500),
-  $input: mat.define-typography-level(inherit, 1.125, 400),
-);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$workclick-theme: mat.define-light-theme((
+$app-theme: mat.define-light-theme((
   color: (
-    primary: $workclick-primary,
-    accent: $workclick-accent,
-    warn: $workclick-warn,
+    primary: palette.$primary-palette,
+    accent: palette.$accent-palette,
   )
 ));
 
-@include mat.core($workclick-typography);
+@include mat.core(typography.$typography);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($workclick-theme);
+@include mat.all-component-themes($app-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
