@@ -142,19 +142,15 @@
    </div>
   </div>
   <div class="content-container">
+
     <swiper
       #swiperRef
-      [slidesPerView]="3"
-      [centeredSlides]="true"
-      [spaceBetween]="30"
-      [pagination]="{
-        type: 'fraction'
-      }"
+      [slidesPerView]="5"
+      [spaceBetween]="10"
       [navigation]="true"
-      [virtual]="true"
-      class="mySwiper"
+      [slidesPerView]="'auto'"
     >
-      <ng-template *ngFor="let enterprice of enterprices" swiperSlide><div class="swiper-image" [style.background]="enterprice"></div>
+      <ng-template *ngFor="let enterprice of enterprices" swiperSlide><div class="swiper-logo" [style.background]="enterprice"></div>
       </ng-template>
     </swiper>
   </div>
