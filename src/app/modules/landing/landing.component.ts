@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit {
   public enterprices: string[] = [
     "./assets/workclick.svg",
     "./assets/workclick-small.png"
-  ].map(enterprice=>`url(${enterprice}) no-repeat center center fixed`)
+  ]
   constructor() {
     SwiperCore.use([Navigation, Pagination]);
   }
