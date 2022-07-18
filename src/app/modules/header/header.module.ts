@@ -1,29 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LandingRoutingModule } from './landing-routing.module';
-import { LandingComponent } from './landing.component';
-import { SwiperModule } from 'swiper/angular';
-
+import { HeaderRoutingModule } from './header-routing.module';
+import { HeaderComponent } from './header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { HeaderModule } from '../header/header.module';
 
 @NgModule({
   declarations: [
-    LandingComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,
-    LandingRoutingModule,
-    SwiperModule,
+    HeaderRoutingModule,
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule,
-    HeaderModule
+    MatButtonModule
+  ],
+  exports: [
+    HeaderComponent
   ]
 })
-export class LandingModule { }
+export class HeaderModule { }

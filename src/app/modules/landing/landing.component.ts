@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Virtual } from 'swiper';
 
 @Component({
   selector: 'app-landing',
@@ -9,8 +9,19 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 })
 export class LandingComponent implements OnInit {
 
+  public images: string[] = [
+    "./assets/ANUNCIO.png",
+    "./assets/SECAPSA.png",
+    "./assets/SERH.png",
+    "./assets/AVANKITA.png"
+  ].map(image => `url(${image}) no-repeat center center fixed`)
+
+  public enterprices: string[] = [
+    "./assets/workclick.svg",
+    "./assets/workclick-small.png"
+  ]
   constructor() {
-    SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+    SwiperCore.use([Navigation, Pagination]);
   }
 
   ngOnInit(): void {
