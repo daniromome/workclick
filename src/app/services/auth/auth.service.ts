@@ -6,13 +6,14 @@ import { User } from '../../models/user.model';
 import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   private settings: firebase.auth.ActionCodeSettings = {
-    url: 'https://workclick.daniromo.me/welcome',
+    url: environment.production ? 'https://workclick.daniromo.me' : 'http://localhost:4200',
     handleCodeInApp: true,
     android: {
       packageName: 'me.daniromo.workclick'
@@ -36,6 +37,7 @@ export class AuthService {
   }
 
   public async loginWithEmail(url: string, email: string): Promise<void> {
+    if (!email) return
     if (await this.auth.isSignInWithEmailLink(url)) {
       const credential = await this.auth.signInWithEmailLink(email, url)
       localStorage.removeItem('signInEmail')
@@ -51,15 +53,10 @@ export class AuthService {
   public async loginWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.auth.signInWithPopup(provider);
-    if (credential.user) await this.updateUserData(this.convertUser(credential.user))
-  }
-
-  public async loggedInWithEmail(url: string): Promise<void> {
-    await this.auth.isSignInWithEmailLink(url)
-    const email = localStorage.getItem('signInEmail')
-    if (!email) return
-    const credential = await this.auth.signInWithEmailLink(email, url)
-    if (credential.user) this.updateUserData(this.convertUser(credential.user))
+    console.log(credential)
+    if (credential.additionalUserInfo?.profile) await this.updateUserData(this.convertUser(credential.additionalUserInfo?.profile as unknown as firebase.User))
+    console.log('authenticated', credential.user?.email)
+    this.router.navigateByUrl('dashboard')
   }
 
   private async updateUserData(user: User): Promise<void> {
