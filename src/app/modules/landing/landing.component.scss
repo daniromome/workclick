@@ -1,12 +1,10 @@
-.spacer {
-  flex: 1 1 auto;
-}
+@use '../../shared/styles/layout' as layout;
 
 .grid {
   display: grid;
   gap: 2.5rem;
   background-color: #F5F5F5;
-  padding: $toolbar-height 0 2.5rem 0;
+  padding: layout.$toolbar-height 0 2.5rem 0;
 }
 /*            Paquetes             */
 .content-container {
@@ -47,11 +45,11 @@
       gap: 2rem;
     }
   }
-  
+
   .example-card {
     max-width: 400px;
   }
-  
+
   .example-header-image {
     background-size: cover;
   }
@@ -99,11 +97,11 @@
   background-image: url("../../../assets/1.png");
   background-repeat: no-repeat;
   background-size: 35%;
-  transform: rotate(179.99deg); 
+  transform: rotate(179.99deg);
 }
 .wrapper {
   display: grid;
-  transform: rotate(-179.99deg); 
+  transform: rotate(-179.99deg);
   grid-template-columns: 1fr 1fr;
   height: 100%;
 }
@@ -139,7 +137,7 @@
 .wrappers {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  
+
 }
 
 .footer-distributed {
