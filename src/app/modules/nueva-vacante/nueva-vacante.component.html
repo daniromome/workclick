@@ -1,0 +1,77 @@
+<main class="admin__main">
+    <div class="dashboard">
+        <div class="form">
+            <h2>Nueva Vacante</h2><br>
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre de la vacante</mat-label>
+                <input matInput>
+                <mat-error >El nombre es inválido</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Empresa</mat-label>
+                <input matInput>
+                <mat-error >La empresa es inválida</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Dirección</mat-label>
+                <input matInput>
+                <mat-error >La dirección es inválida</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Salario</mat-label>
+                <input matInput>
+                <mat-error >El salario es inválido</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo de vacante</mat-label>
+                <input matInput>
+                <mat-error >El tipo de vacante es inválido</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Cantidad de vacantes</mat-label>
+                <input matInput>
+                <mat-error >La cantidad es inválida</mat-error>
+            </mat-form-field>
+            <h2>Requisitos:</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Carrera</mat-label>
+                <input matInput>
+                <mat-error >La carrera es inválido</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Sexo</mat-label>
+                <mat-select>
+                  <mat-option value="one">Femenino</mat-option>
+                  <mat-option value="two">Masculino</mat-option>
+                  <mat-option value="three">Indistinto</mat-option>
+                </mat-select>
+                <mat-error >El sexo es inválido</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Edad</mat-label>
+                <input matInput>
+                <mat-error >La edad es inválida</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Horario</mat-label>
+                <input matInput>
+                <mat-error >El horario es inválido</mat-error>
+              </mat-form-field>
+              <h2>Conocimientos y habilidades</h2>
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Coloca los conocimientos y habilidades que el candidato debe tener.</mat-label>
+                  <textarea matInput placeholder="Ex. Deseable conocimiento en..."></textarea>
+                </mat-form-field>
+                <h2>Actividades</h2>
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Coloca las actividades que el candidato debe cumplir.</mat-label>
+                  <textarea matInput placeholder="Ex. Apoyo en..."></textarea>
+                </mat-form-field>
+                <div class="btn">
+                    <button class="btn-acces" mat-raised-button>Cancelar</button>
+                    &nbsp;
+                    <button mat-raised-button color="primary">Publicar vacante</button>
+                  </div>
+        </div>
+    </div>
+</main>

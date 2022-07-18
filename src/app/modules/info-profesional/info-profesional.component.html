@@ -1,39 +1,73 @@
 <app-header></app-header>
 <div class="grid">
-  <swiper
-    [navigation]="true"
-    [pagination]="{ clickable: true }"
-    class="swiper-images"
-  >
-    <ng-template *ngFor="let image of images" swiperSlide><div class="swiper-image" [style.background]="image"></div></ng-template>
-  </swiper>
+  
   <div class="content-container">
-    <div class="info">
-        <section class="wrapper">
-          <div class="left">
-            <h2>¿Quiénes Somos?</h2>
-            <img src="../../../assets/recluta.jfif" alt="">
-          </div>
-          <div class="right">
-            <img src="./assets/workclick.svg" alt="">
-                <h3>Sobre nosotros</h3>
-            <p>Estamos dedicados a crear herramientas esenciales para el
-              departamento de Recursos Humanos.</p>
-              <p>Esta herramienta está diseñada
-                principalmente para llevar un control total de tus proceso de
-                reclutamiento y selección, desde la postulación de vacantes,
-                la selección del talento ideal hasta una excelente experiencia de los
-                usuarios, todo esto desde una plataforma intuitiva y fácil de usar.</p>
-          </div>
-        </section>
+    <div class="content-container-plans">
+        <h1>Plan Profesional MX $200.00 al mes</h1>
+        <p>Consigue más herramientas para tu agencia, gestiona tus publicaciónes y genera vacantes de manera ilimitada para que puedas brindar un mejor servicio a tus clientes. El plan profesional es ideal para agencias de recursos humanos ya que te permite trabajar con mayor flujo de información.</p>
+        <hr>
+      </div> 
+    <div class="details">
+      <div class="colum">
+        <ul class="list">
+          <li>
+              <mat-icon color="primary">done</mat-icon>
+              <span>Creación de cuenta gratis.</span>
+          </li>
+          <li >
+              <mat-icon color="primary">done</mat-icon>
+              <span>Publicación de vacantes ilimitadas.</span>
+          </li>
+          <li>
+              <mat-icon color="primary">done</mat-icon>
+              <span>Dashboard personal para gestionar la información.</span>
+          </li>
+          <li>
+            <mat-icon color="primary">done</mat-icon>
+            <span>Publicación de 3 vaners publicitarios con nosotros.</span>
+        </li>
+      <li>
+        <mat-icon color="primary">done</mat-icon>
+        <span>Creación de quiz para primer filtro de manera ilimitada.</span>
+    </li>
+      </ul>
+      </div>
+      <div class="colum">
+        <ul class="list">
+          <li>
+              <mat-icon color="primary">done</mat-icon>
+              <span>Creación de cuenta gratis.</span>
+          </li>
+          <li >
+              <mat-icon color="primary">done</mat-icon>
+              <span>Publicación de 3 vacantes.</span>
+          </li>
+          <li>
+              <mat-icon color="primary">done</mat-icon>
+              <span>Dashboard personal.</span>
+          </li>
+          <li>
+            <mat-icon color="primary">done</mat-icon>
+            <span>Dashboard personal.</span>
+        </li>
+        <li>
+          <mat-icon color="primary">done</mat-icon>
+          <span>Dashboard personal.</span>
+      </li>
+      </ul>
+      <button mat-stroked-button class="color-btn">Adquirir Plan</button>
+      </div>
+      <div class="colum">
+        <img src="../../../assets/undraw_Hiring_re_yk5n.png" alt="">
+      </div>
     </div>
   </div>
   <div class="content-container-cards">
     <div class="content-container-info">
-      <h1>Nuestros Servicios</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, quo. Quas modi exercitationem consequuntur quod provident maxime eos a,
+      <h1>¿Buscas algo más completo?</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, quo. Quas modi exercitationem consequuntur quod provident maxime eos a, 
          facilis ducimus animi aliquam deleniti odio amet tenetur! Consectetur, dicta ex!</p>
-
+            
     </div>
    <div class="box-card">
     <div class="card">
@@ -95,8 +129,8 @@
         </ul>
             <br>
           <p>
-            Para un acceso avanzado y controles dedicados a la creación
-            de vacantes ilimitadas para un sólo editor, el plan Empresarial
+            Para un acceso avanzado y controles dedicados a la creación 
+            de vacantes ilimitadas para un sólo editor, el plan Empresarial 
             lo ayuda a escalar los procesos de reclutamiento en toda la empresa.
           </p>
         </mat-card-content>
@@ -143,47 +177,10 @@
    </div>
   </div>
   <div class="content-container">
-
-    <swiper
-      [spaceBetween]="10"
-      [navigation]="true"
-      [slidesPerView]="'auto'"
-      class="swiper-logos"
-    >
-      <ng-template *ngFor="let enterprice of enterprices" swiperSlide>
-        <img [src]="enterprice" class="swiper-logo">
-      </ng-template>
-    </swiper>
+    
   </div>
 </div>
 
 
-		<div class="wrappers">
-      <div class="footer-distributed">
-        <div class="footer-right">
-          <img src="./assets/workclick.svg" class="logos">
-        </div>
-        <div class="footer-center">
-          <div class="example-button-container">
-            <button mat-mini-fab disabled>
-              <mat-icon>facebook-box</mat-icon>
-            </button>
-            <button mat-mini-fab disabled>
-              <mat-icon>twitter</mat-icon>
-            </button>
-            <button mat-mini-fab disabled>
-              <mat-icon>whatsapp</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="footer-left">
-          <p>
-            Estamos dedicados a crear herramientas esenciales para el departamento de Recursos Humanos por medio de la tecnología.
-          </p>
 
-        </div>
-        <hr>
-        <p class="copy">WorkClick &copy; 2022</p>
-      </div>
-    </div>
 

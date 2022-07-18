@@ -1,0 +1,29 @@
+$toolbar-height: 4rem;
+
+/*          Menú                */
+.btn-acces{
+  margin-right: 43px!important;
+  background-color: #18A0FB;
+  color: #fff!important;
+}
+
+.fixed-top {
+  position: fixed;
+  z-index: 2;
+  height: $toolbar-height;
+  background-color: #fff;
+  button{
+    color: #18A0FB;
+    margin: 20px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  height: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}

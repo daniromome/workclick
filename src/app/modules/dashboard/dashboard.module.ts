@@ -4,6 +4,13 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+
+import { VacantesModule } from '../vacantes/vacantes.module';
+import { NuevaVacanteModule } from '../nueva-vacante/nueva-vacante.module';
+import { ListCandidatosModule } from '../list-candidatos/list-candidatos.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +18,13 @@ import { DashboardComponent } from './dashboard.component';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    MatButtonModule,
+    MatListModule,
+    MatIconModule,
+    VacantesModule,
+    NuevaVacanteModule,
+    ListCandidatosModule
   ]
 })
 export class DashboardModule { }

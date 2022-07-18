@@ -15,9 +15,11 @@ import { reducers, metaReducers } from './reducers/index';
 import { entityConfig } from './entity-metadata';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
