@@ -1,0 +1,19 @@
+@use 'src/app/shared/styles/layout' as layout;
+
+.icon-container {
+  margin-bottom: 1.34375em;
+}
+
+.google {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.full-width-container {
+  width: layout.full-width(20%);
+}
+
+.logo {
+  @extend .full-width-container;
+  margin: 4rem 0 2rem 0;
+}
