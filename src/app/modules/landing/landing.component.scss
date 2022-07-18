@@ -155,11 +155,12 @@ $toolbar-height: 4rem;
 /*          Footer           */
 .wrappers {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  
 
 }
 
 .footer-distributed {
+  grid-template-columns: 1fr 1fr 1fr;
   background-color: #ffff;
   box-sizing: border-box;
   padding: 45px 50px;
