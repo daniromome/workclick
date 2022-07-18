@@ -17,10 +17,11 @@ export class LandingComponent implements OnInit {
   ].map(image => `url(${image}) no-repeat center center fixed`)
 
   public enterprices: string[] = [
-    "./assets/ANUNCIO.png",
-  ].map(enterprice=>`url(${enterprice}) no-repeat center center fixed`)
+    "./assets/workclick.svg",
+    "./assets/workclick-small.png"
+  ]
   constructor() {
-    SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+    SwiperCore.use([Navigation, Pagination]);
   }
 
   ngOnInit(): void {

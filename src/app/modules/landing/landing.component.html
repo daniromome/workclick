@@ -3,6 +3,7 @@
   <swiper
     [navigation]="true"
     [pagination]="{ clickable: true }"
+    class="swiper-images"
   >
     <ng-template *ngFor="let image of images" swiperSlide><div class="swiper-image" [style.background]="image"></div></ng-template>
   </swiper>
@@ -142,19 +143,15 @@
    </div>
   </div>
   <div class="content-container">
+
     <swiper
-      #swiperRef
-      [slidesPerView]="3"
-      [centeredSlides]="true"
-      [spaceBetween]="30"
-      [pagination]="{
-        type: 'fraction'
-      }"
+      [spaceBetween]="10"
       [navigation]="true"
-      [virtual]="true"
-      class="mySwiper"
+      [slidesPerView]="'auto'"
+      class="swiper-logos"
     >
-      <ng-template *ngFor="let enterprice of enterprices" swiperSlide><div class="swiper-image" [style.background]="enterprice"></div>
+      <ng-template *ngFor="let enterprice of enterprices" swiperSlide>
+        <img [src]="enterprice" class="swiper-logo">
       </ng-template>
     </swiper>
   </div>
