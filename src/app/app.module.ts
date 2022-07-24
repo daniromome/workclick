@@ -10,14 +10,17 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
-import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './shared/components/auth/auth.module';
 import { reducers, metaReducers } from './reducers/index';
 import { entityConfig } from './entity-metadata';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire/compat';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router', routerState: RouterState.Minimal }),
     EntityDataModule.forRoot(entityConfig),
-    SharedModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AuthModule
   ],
   providers: [
     HttpClient,

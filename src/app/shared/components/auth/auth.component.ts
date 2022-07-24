@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,9 +10,28 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  public control = new FormControl('', {
+    validators: [
+      Validators.email,
+      Validators.required
+    ]
+  })
+
+  constructor(
+    private auth: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.control.setValue(localStorage.getItem('signInEmail') || '')
+    this.auth.loginWithEmail(window.location.href, this.control.value || '')
+  }
+
+  public loginWithEmail(): void {
+    this.auth.loginWithEmail(window.location.href, this.control.value || '')
+  }
+
+  public loginWithGoogle(): void {
+    this.auth.loginWithGoogle()
   }
 
 }

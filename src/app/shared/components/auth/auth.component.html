@@ -1,5 +1,17 @@
-<div class="grid">
+<div class="grid-center-items">
   <img src="./assets/workclick.svg" class="logo">
-  <h1>Inicia sesión</h1>
-  <img src="./assets/google.svg" class="google">
+  <p class="mat-display-1">Inicia sesión</p>
+  <button class="full-width-container" mat-stroked-button (click)="loginWithGoogle()">
+    <div class="flex-row-center-items">
+      <img src="./assets/google.svg" class="google">
+      <p>Continua con Google</p>
+    </div>
+  </button>
+  <p>o usa tu correo electrónico para iniciar sesión:</p>
+  <mat-form-field appearance="outline" class="full-width-container">
+    <mat-label>Correo electrónico</mat-label>
+    <input matInput [formControl]="control">
+    <mat-error *ngIf="control.invalid">El correo es inválido</mat-error>
+  </mat-form-field>
+  <button class="full-width-container" mat-raised-button color="primary" [disabled]="control.invalid" (click)="loginWithEmail()">Iniciar sesión</button>
 </div>
