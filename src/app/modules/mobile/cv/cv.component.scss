@@ -1,0 +1,14 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.cv {
+  @include ui.flex(column);
+  padding: 2rem;
+  &-title {
+    @include ui.grid(items);
+  }
+}
+
+
+.logo {
+  @include ui.full(0, width);
+}

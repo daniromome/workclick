@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle>{{ post.company }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <mat-divider></mat-divider>
+    <h4>{{ post.position }}</h4>
+    <div>
+      <wo-list-item>{{ post.address }}</wo-list-item>
+      <wo-list-item>{{ post.salary[0] | currency }} - {{ post.salary[1] | currency }} mensuales</wo-list-item>
+      <wo-list-item>{{ post.type | jobType }}</wo-list-item>
+      <wo-list-item>Horario: {{ post.schedule[0] }} - {{ post.schedule[1] }}</wo-list-item>
+      <wo-list-item>{{ post.quantity }} vacante {{ post.quantity > 1 ? 's' : ''}}</wo-list-item>
+    </div>
+    <mat-divider></mat-divider>
+    <h4>Requisitos</h4>
+    <div>
+      <wo-list-item>{{ post.career }}</wo-list-item>
+      <wo-list-item>Género {{ post.gender | gender }}</wo-list-item>
+      <wo-list-item>Edad {{ getAgeRequirement() }}</wo-list-item>
+      <wo-list-item>
+        {{ post.experience }} año{{ post.experience > 1 ? 's' : '' }} de experiencia en un rol afín
+      </wo-list-item>
+    </div>
+    <mat-divider></mat-divider>
+    <h4>Conocimientos y habilidades</h4>
+    <div>{{ post.skills }}</div>
+    <mat-divider></mat-divider>
+    <h4>Actividades</h4>
+    <div>{{ post.activities }}</div>
+    <mat-divider></mat-divider>
+    <h4>Beneficios</h4>
+    <div>{{ post.benefits }}</div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <ng-content select="[action]"></ng-content>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,28 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.mat-card {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-height: 12.5rem;
+}
+
+.flex-column {
+  margin-bottom: 2rem;
+}
+
+.characteristic {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  @include ui.md-icon-size(1rem)
+}
+
+.spacer {
+  flex: 1;
+}

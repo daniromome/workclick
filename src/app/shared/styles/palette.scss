@@ -1,12 +1,15 @@
 @use '@angular/material' as mat;
 
-$primary: (
+$primary: #1cdaff;
+$accent: #13fcae;
+
+$primary-hues: (
   50: #e4fbff,
   100: #bbf4ff,
   200: #8eedff,
   300: #60e5ff,
   400: #3ee0ff,
-  500: #1cdaff,
+  500: $primary,
   600: #19d6ff,
   700: #14d0ff,
   800: #11cbff,
@@ -33,13 +36,13 @@ $primary: (
   )
 );
 
-$accent: (
+$accent-hues: (
   50: #e3fff5,
   100: #b8fee7,
   200: #89fed7,
   300: #5afdc6,
   400: #36fcba,
-  500: #13fcae,
+  500: $accent,
   600: #11fca7,
   700: #0efb9d,
   800: #0bfb94,
@@ -66,5 +69,5 @@ $accent: (
   )
 );
 
-$primary-palette: mat.define-palette($primary);
-$accent-palette: mat.define-palette($accent, A200, A100, A400);
+$primary-palette: mat.define-palette($primary-hues);
+$accent-palette: mat.define-palette($accent-hues, A200, A100, A400);

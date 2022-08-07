@@ -1,0 +1,33 @@
+<div class="dashboard">
+  <ng-container *ngIf="user$ | async as user">
+    <div *ngIf="user" class="panel">
+      <div class="flex-centered profile">
+        <img
+          [src]="user.photo"
+          alt="User's profile picture"
+          referrerpolicy="no-referrer"
+          height="128px" wwidth="128px"
+          class="profile-picture">
+        <h2>{{ user.name }}</h2>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="panel-navigation">
+        <div class="panel-navigation-button" [routerLink]="['./']" matRipple>
+          <mat-icon class="panel-navigation-icon">assignment_ind</mat-icon>
+          <span>Vacantes</span>
+        </div>
+        <div class="panel-navigation-button" [routerLink]="['./new-post']" matRipple>
+          <mat-icon class="panel-navigation-icon">assignment_turned_in</mat-icon>
+          <span>Nueva vacante</span>
+        </div>
+        <div class="panel-navigation-button" [routerLink]="['./profile']" matRipple>
+          <mat-icon class="panel-navigation-icon">account_circle</mat-icon>
+          <span>Perfil</span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="overflow">
+    <router-outlet></router-outlet>
+  </div>
+</div>

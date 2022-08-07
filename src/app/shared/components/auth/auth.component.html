@@ -1,13 +1,13 @@
-<div class="grid-center-items">
+<div class="grid-center-items" (click)="$event.stopPropagation();">
   <img src="./assets/workclick.svg" class="logo">
   <p class="mat-display-1">Inicia sesión</p>
   <button class="full-width-container" mat-stroked-button (click)="loginWithGoogle()">
-    <div class="flex-row-center-items">
+    <div class="flex-centered">
       <img src="./assets/google.svg" class="google">
       <p>Continua con Google</p>
     </div>
   </button>
-  <p>o usa tu correo electrónico para iniciar sesión:</p>
+  <p class="full-width-container">o usa tu correo electrónico para iniciar sesión:</p>
   <mat-form-field appearance="outline" class="full-width-container">
     <mat-label>Correo electrónico</mat-label>
     <input matInput [formControl]="control">

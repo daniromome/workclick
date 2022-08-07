@@ -1,0 +1,17 @@
+<mat-toolbar class="toolbar mat-elevation-z3">
+  <img src="./assets/workclick.svg" class="logo">
+  <ng-container *ngIf="isLanding">
+    <button mat-button color="primary">Nosotros</button>
+    <button mat-button color="primary">Nuestros servicios</button>
+    <button mat-button color="primary">Contacto</button>
+  </ng-container>
+  <span class="spacer"></span>
+  <button mat-raised-button color="primary" *ngIf="loggedIn; else logIn" (click)="logout()">Cerrar Sesión</button>
+  <ng-template #logIn>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="auth">Iniciar Sesión</button>
+  </ng-template>
+</mat-toolbar>
+
+<mat-menu #auth>
+  <wo-auth></wo-auth>
+</mat-menu>

@@ -1,19 +1,25 @@
-@use 'src/app/shared/styles/layout' as layout;
+@use 'node_modules/@not-or/ui' as ui;
 
 .icon-container {
   margin-bottom: 1.34375em;
 }
 
+.grid-center-items {
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
 .google {
   width: 1.25rem;
   height: 1.25rem;
+  margin-right: 1rem;
 }
 
 .full-width-container {
-  width: layout.full-width(20%);
+  @include ui.full(20%, width);
 }
 
 .logo {
   @extend .full-width-container;
-  margin: 4rem 0 2rem 0;
+  margin: 2rem;
 }

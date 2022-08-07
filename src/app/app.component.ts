@@ -1,9 +1,10 @@
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { App, URLOpenListenerEvent } from '@capacitor/app';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Component({
-  selector: 'app-root',
+  selector: 'wo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -15,14 +16,19 @@ export class AppComponent {
     this.initApp()
   }
 
-  initApp() {
+  async initApp() {
     App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
       this.zone.run(() => {
         const route = event.url.split('.me').pop();
         if (!route) return
-        this.router.navigateByUrl(route);
+        this.router.navigateByUrl(route, { skipLocationChange: true });
       })
     })
+    GoogleAuth.initialize()
+    try {
+      await App.getInfo()
+      this.router.navigate(['mobile'])
+    } catch (error) {}
   }
 
   title = 'workclick';

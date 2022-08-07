@@ -1,0 +1,6 @@
+<div class="posts-container">
+  <wo-post *ngFor="let post of posts$ | async" [post]="post">
+    <button mat-raised-button action>Modificar</button>
+    <button mat-raised-button color="primary" action>Ver candidatos</button>
+  </wo-post>
+</div>

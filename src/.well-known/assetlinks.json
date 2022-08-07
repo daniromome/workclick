@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "me.daniromo.workclick",
+      "sha256_cert_fingerprints": [
+        "69:0D:F5:2C:FE:EB:F7:AF:A5:C4:DE:E7:6A:58:11:E6:0C:B8:6A:D7:64:92:73:3E:C9:96:DD:74:99:E6:B8:BA"
+      ]
+    }
+  }
+]

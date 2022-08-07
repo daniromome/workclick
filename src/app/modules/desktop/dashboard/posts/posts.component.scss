@@ -1,0 +1,13 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.posts-container {
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+  @include ui.tablet {
+    grid-template-columns: repeat(auto-fit, minmax(204px, 1fr));
+  }
+  @include ui.desktop {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  }
+}

@@ -1,0 +1,36 @@
+@use 'node_modules/@not-or/ui' as ui;
+@use 'src/app/shared/styles/palette' as palette;
+
+.dashboard {
+  height: calc(100vh - 4rem);
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.panel {
+  border-right: solid 0.25px rgba(0, 0, 0, 0.12);
+  .profile {
+    padding: 2rem;
+    .profile-picture {
+      margin-right: 2rem;
+      border-radius: 50%;
+    }
+  }
+  &-navigation {
+    @include ui.flex(column);
+    &-button {
+      gap: 2rem;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    &-icon {
+      color: palette.$accent;
+    }
+  }
+}
+
+.overflow {
+  overflow: scroll;
+}
