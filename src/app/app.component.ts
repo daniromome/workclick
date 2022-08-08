@@ -27,7 +27,7 @@ export class AppComponent {
     GoogleAuth.initialize()
     try {
       await App.getInfo()
-      this.router.navigate(['mobile'])
+      this.router.navigate(['mobile'], { replaceUrl: true })
     } catch (error) {}
   }
 

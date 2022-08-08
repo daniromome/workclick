@@ -1,5 +1,5 @@
 import { JobType } from '../shared/enums/job-type.interface';
-interface IntervalDate {
+export interface IntervalDate {
   month: number
   year: number
 }
@@ -11,22 +11,23 @@ interface Experience {
   end: IntervalDate
 }
 
-interface PreviousJob extends Experience {
+export interface PreviousJob extends Experience {
+  position: string
   type: JobType
   skills: string[]
 }
 
-interface Education extends Experience {
+export interface Education extends Experience {
   degree: string
   career: string
 }
 
-interface CV {
-  url?: string
-  about?: string
-  education?: Education[]
-  experience?: PreviousJob[]
-  skills?: string[]
+export interface CV {
+  url: string
+  about: string
+  education: Education[]
+  experience: PreviousJob[]
+  skills: string[]
 }
 
 export interface User {
@@ -36,6 +37,6 @@ export interface User {
   photo: string
   cv?: CV
   phone?: string
-  birthdate?: Date
+  birthdate?: string
   address?: string
 }

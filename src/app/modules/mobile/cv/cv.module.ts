@@ -8,6 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { IntervalDateModule } from '../../../shared/components/interval-date/interval-date.module';
 
 
 @NgModule({
@@ -21,7 +27,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatDatepickerModule
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatTabsModule,
+    MatIconModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    FormsModule,
+    IntervalDateModule
   ]
 })
 export class CvModule { }

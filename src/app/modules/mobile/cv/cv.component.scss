@@ -2,13 +2,58 @@
 
 .cv {
   @include ui.flex(column);
-  padding: 2rem;
+  @include ui.full(0, height);
   &-title {
     @include ui.grid(items);
+    padding: 2rem;
+  }
+  &-content {
+    @include ui.flex(column);
+    &-title {
+      padding: 1rem 2rem
+    }
+    &-form {
+      padding: 0.1rem 2rem
+    }
+  }
+  &-consent {
+    @include ui.flex(column, true);
+    height: 65vh;
+    p {
+      @include ui.full(20%, width);
+      text-align: justify;
+    }
   }
 }
 
 
 .logo {
   @include ui.full(0, width);
+}
+
+::ng-deep .mat-tab-body-wrapper {
+  height: 100%;
+}
+
+.full {
+  @include ui.full(0, width);
+}
+
+::ng-deep textarea.mat-input-element {
+  resize: none !important;
+  height: 20vh;
+}
+
+.fixed-bottom-right {
+  position: absolute;
+  right: calc(50% - 28px);
+  bottom: 2rem;
+}
+
+.overflow {
+  @include ui.flex(column);
+  gap: 2rem;
+  overflow-y: scroll;
+  max-height: 65vh;
+  padding: 0.1rem 2rem;
 }

@@ -55,7 +55,6 @@ export class AuthService {
   }
 
   public async loginWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider()
     const user = await GoogleAuth.signIn()
     const oauth = firebase.auth.GoogleAuthProvider.credential(user.authentication.idToken)
     const credential = await this.auth.signInWithCredential(oauth)
@@ -68,7 +67,7 @@ export class AuthService {
         email: profile.email
       })
     }
-    if (this.router.url === '/mobile') this.router.navigateByUrl('/mobile/jobs')
+    if (this.router.url === '/mobile') this.router.navigateByUrl('/mobile/cv')
     else this.router.navigateByUrl('dashboard')
   }
 
@@ -77,7 +76,7 @@ export class AuthService {
     this.router.navigateByUrl('')
   }
 
-  private async updateUserData(user: User): Promise<void> {
+  public async updateUserData(user: User): Promise<void> {
     const userRef: AngularFirestoreDocument<User> = this.firestore.doc(`users/${user.uid}`)
     await userRef.set(user, { merge: true })
   }

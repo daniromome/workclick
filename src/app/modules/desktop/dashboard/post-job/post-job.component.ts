@@ -8,13 +8,11 @@ import { Post } from '../../../../models/post.model';
 import { FormFrom } from '../../../../shared/utils/form-from.type';
 import { JobType } from '../../../../shared/enums/job-type.interface';
 import { Gender } from '../../../../shared/enums/gender.interface';
-
-type JT = 'FULLTIME' | 'PARTTIME' | 'INTERNSHIP'
-type JG = 'ANY' | 'F' | 'M'
-
+import { JobTypeType } from '../../../../shared/types/job-type';
+import { GenderType } from '../../../../shared/types/gender';
 interface PostForm extends Omit<FormFrom<Post>, 'type' | 'gender' | 'id'> {
-  type: FormControl<JT>
-  gender: FormControl<JG>
+  type: FormControl<JobTypeType>
+  gender: FormControl<GenderType>
 }
 
 @Component({
@@ -41,14 +39,14 @@ export class PostJobComponent implements OnInit, OnDestroy {
         fb.control<number>(zero, { validators: [ Validators.required, Validators.min(minimumWage) ] }),
         fb.control<number>(zero, { validators: [ Validators.required, Validators.min(minimumWage + one) ] })
       ]),
-      type: fb.control<JT>('FULLTIME', { validators: [ Validators.required ] }),
+      type: fb.control<JobTypeType>('FULLTIME', { validators: [ Validators.required ] }),
       quantity: fb.control<number>(one),
       schedule: fb.array([
         fb.control('', { validators: [ Validators.pattern(hoursAndMinutes) ]}),
         fb.control('', { validators: [ Validators.pattern(hoursAndMinutes) ]})
       ]),
       career: fb.control(''),
-      gender: fb.control<JG>('ANY'),
+      gender: fb.control<GenderType>('ANY'),
       age: fb.array([
         fb.control<number>(zero),
         fb.control<number>(zero)

@@ -1,0 +1,25 @@
+<span class="mat-caption label" *ngIf="label">{{ label }}</span>
+<form *ngIf="form" [formGroup]="form" class="form">
+  <mat-form-field appearance="outline" class="half">
+    <mat-label>Mes</mat-label>
+    <mat-select formControlName="month">
+      <mat-option [value]="1">Enero</mat-option>
+      <mat-option [value]="2">Febrero</mat-option>
+      <mat-option [value]="3">Marzo</mat-option>
+      <mat-option [value]="4">Abril</mat-option>
+      <mat-option [value]="5">Mayo</mat-option>
+      <mat-option [value]="6">Junio</mat-option>
+      <mat-option [value]="7">Julio</mat-option>
+      <mat-option [value]="8">Agosto</mat-option>
+      <mat-option [value]="9">Septiembre</mat-option>
+      <mat-option [value]="10">Octubre</mat-option>
+      <mat-option [value]="11">Noviembre</mat-option>
+      <mat-option [value]="12">Diciembre</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="half">
+    <mat-label>Año</mat-label>
+    <input matInput formControlName="year" type="number" (keydown)="onlyNumbers($event)">
+    <mat-error>Año inválido</mat-error>
+  </mat-form-field>
+</form>
