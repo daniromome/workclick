@@ -18,7 +18,7 @@
   }
   &-consent {
     @include ui.flex(column, true);
-    height: 65vh;
+    height: 60vh;
     p {
       @include ui.full(20%, width);
       text-align: justify;
@@ -54,6 +54,6 @@
   @include ui.flex(column);
   gap: 2rem;
   overflow-y: scroll;
-  max-height: 65vh;
+  max-height: 60vh;
   padding: 0.1rem 2rem;
 }

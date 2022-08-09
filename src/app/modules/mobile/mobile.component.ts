@@ -1,17 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth/auth.service';
+import { Observable } from 'rxjs';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'wo-mobile',
   templateUrl: './mobile.component.html',
   styleUrls: ['./mobile.component.scss']
 })
-export class MobileComponent implements OnInit {
+export class MobileComponent {
 
-  constructor() {
+  public loggedIn$: Observable<boolean>
+
+  constructor(
+    private auth: AuthService
+  ) {
+    this.loggedIn$ = this.auth.loggedIn$
   }
 
-  ngOnInit(): void {
-
+  async logout(drawer: MatDrawer): Promise<void> {
+    await drawer.close()
+    await this.auth.logout()
   }
 
 }

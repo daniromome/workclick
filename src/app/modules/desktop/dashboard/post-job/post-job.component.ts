@@ -24,7 +24,7 @@ interface PostForm extends Omit<FormFrom<Post>, 'type' | 'gender' | 'id'> {
 export class PostJobComponent implements OnInit, OnDestroy {
 
   public form: FormGroup<PostForm>
-  private subs: Subscription[] = []
+  private sub: Subscription = new Subscription()
 
   constructor(
     private postService: PostEntityService,
@@ -59,7 +59,7 @@ export class PostJobComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subs.push(
+    this.sub.add(
       this.form.controls.salary.valueChanges.subscribe(([min, max]) => {
         const minValidators = [
           Validators.min(minimumWage),
@@ -73,7 +73,9 @@ export class PostJobComponent implements OnInit, OnDestroy {
         ])
         this.form.controls.salary.controls[zero].updateValueAndValidity({ emitEvent: false })
         this.form.controls.salary.controls[one].updateValueAndValidity({ emitEvent: false })
-      }),
+      })
+    )
+    this.sub.add(
       this.form.controls.age.valueChanges.subscribe(([min, max]) => {
         const minValidators = [Validators.min(minimumAge)]
         if (max) minValidators.push(Validators.max(max - one))
@@ -86,11 +88,11 @@ export class PostJobComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subs.forEach(s => s.unsubscribe())
+    this.sub.unsubscribe()
   }
 
   submit(): void {
-    const form = this.form.getRawValue();
+    const form = this.form.getRawValue()
     const post: Post = {
       ...form,
       salary: [form.salary[0], form.salary[1]],

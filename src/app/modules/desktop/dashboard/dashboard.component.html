@@ -12,18 +12,9 @@
       </div>
       <mat-divider></mat-divider>
       <div class="panel-navigation">
-        <div class="panel-navigation-button" [routerLink]="['./']" matRipple>
-          <mat-icon class="panel-navigation-icon">assignment_ind</mat-icon>
-          <span>Vacantes</span>
-        </div>
-        <div class="panel-navigation-button" [routerLink]="['./new-post']" matRipple>
-          <mat-icon class="panel-navigation-icon">assignment_turned_in</mat-icon>
-          <span>Nueva vacante</span>
-        </div>
-        <div class="panel-navigation-button" [routerLink]="['./profile']" matRipple>
-          <mat-icon class="panel-navigation-icon">account_circle</mat-icon>
-          <span>Perfil</span>
-        </div>
+        <wo-panel-button [routerLink]="['./']" label="Vacantes" icon="assignment_ind"></wo-panel-button>
+        <wo-panel-button [routerLink]="['./new-post']" label="Nueva Vacante" icon="assignment_turned_in"></wo-panel-button>
+        <wo-panel-button [routerLink]="['./profile']" label="Perfil" icon="account_circle"></wo-panel-button>
       </div>
     </div>
   </ng-container>

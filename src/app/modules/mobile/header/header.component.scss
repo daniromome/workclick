@@ -1,0 +1,10 @@
+.toolbar {
+  height: 3.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  place-items: center;
+  background-color: white;
+  .logo {
+    height: 2rem;
+  }
+}

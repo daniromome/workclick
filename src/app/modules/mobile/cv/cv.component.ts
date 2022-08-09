@@ -7,6 +7,8 @@ import { sixty, five } from '../../../shared/constants/numbers';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { JobType } from '../../../shared/enums/job-type.interface';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface UserForm extends Omit<
   FormFrom<User>,
@@ -36,12 +38,14 @@ export class CvComponent implements OnInit, OnDestroy {
   private user$: Observable<User | undefined>
   private user: User | undefined
   public form: FormGroup<UserForm>
-  private sub?: Subscription;
+  private sub: Subscription = new Subscription();
   private fetched: boolean = false;
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router,
+    private toast: MatSnackBar
   ) {
     this.form = fb.group({
       cv: fb.group({
@@ -58,7 +62,7 @@ export class CvComponent implements OnInit, OnDestroy {
     this.user$ = this.auth.user$
   }
   ngOnInit(): void {
-    this.sub = this.user$.subscribe(u => {
+    this.sub.add(this.user$.subscribe(u => {
       this.user = u
       if (!this.fetched && (u?.cv || u?.address || u?.birthdate || u?.phone)) {
         if(u.address) this.form.controls.address.setValue(u.address)
@@ -74,10 +78,10 @@ export class CvComponent implements OnInit, OnDestroy {
         }
         this.fetched = true
       }
-    })
+    }))
   }
   ngOnDestroy(): void {
-    this.sub?.unsubscribe()
+    this.sub.unsubscribe()
   }
 
   newEducationForm(education?: Education): void {
@@ -160,5 +164,7 @@ export class CvComponent implements OnInit, OnDestroy {
       cv: updatedCV
     }
     await this.auth.updateUserData(updatedUser)
+    await this.router.navigateByUrl('/mobile/jobs')
+    this.toast.open('CV digital guardado con éxito', 'OK', { duration: 2000 })
   }
 }

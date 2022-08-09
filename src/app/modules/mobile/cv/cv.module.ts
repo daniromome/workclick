@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { IntervalDateModule } from '../../../shared/components/interval-date/interval-date.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { IntervalDateModule } from '../../../shared/components/interval-date/int
     MatCardModule,
     ReactiveFormsModule,
     FormsModule,
-    IntervalDateModule
+    IntervalDateModule,
+    MatSnackBarModule
   ]
 })
 export class CvModule { }

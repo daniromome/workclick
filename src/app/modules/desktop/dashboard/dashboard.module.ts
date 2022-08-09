@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { PostsComponent } from './posts/posts.component';
 import { PostModule } from '../../../shared/components/post/post.module';
+import { PanelButtonModule } from '../../../shared/components/panel-button/panel-button.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostModule } from '../../../shared/components/post/post.module';
     MatIconModule,
     EntitiesModule,
     MatRippleModule,
-    PostModule
+    PostModule,
+    PanelButtonModule
   ]
 })
 export class DashboardModule { }

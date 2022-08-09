@@ -73,7 +73,7 @@ export class AuthService {
 
   public async logout() {
     this.auth.signOut()
-    this.router.navigateByUrl('')
+    this.router.navigateByUrl(this.router.url.split('/')[1] === 'mobile' ? 'mobile' : '')
   }
 
   public async updateUserData(user: User): Promise<void> {
