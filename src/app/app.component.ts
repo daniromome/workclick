@@ -30,7 +30,11 @@ export class AppComponent {
         else window.history.back()
       })
     })
-    GoogleAuth.initialize()
+    GoogleAuth.initialize({
+      clientId: '414792500962-gerbmu2jo6kamtl5f26irohavcbka7ne.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+      grantOfflineAccess: true
+    })
     try {
       await App.getInfo()
       this.router.navigate(['mobile'], { replaceUrl: true })
