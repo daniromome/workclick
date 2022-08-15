@@ -3,5 +3,5 @@
     <mat-icon>{{ opened ? 'chevron_left' : 'menu' }}</mat-icon>
   </button>
   <ng-template #nobutton><span></span></ng-template>
-  <img src="./assets/workclick.svg" class="logo">
+  <img src="./assets/workclick.svg" class="logo" [routerLink]="['./video']">
 </mat-toolbar>

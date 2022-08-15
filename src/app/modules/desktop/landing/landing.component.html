@@ -1,5 +1,5 @@
 <ng-container *ngIf="images && images.length > 0">
-  <ngx-glide #ngxGlide>
+  <ngx-glide #ngxGlide [autoplay]="3000">
     <ng-container *ngFor="let image of images">
       <div>
         <img class="ad" [src]="image">
@@ -11,6 +11,11 @@
   <div class="content-container">
     <div>
       <h2>¿Quiénes somos?</h2>
+      <div class="full-width full-height flex-centered">
+        <video width="320" height="240" controls>
+          <source src="./assets/video_workclick.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
     <div>
       <img src="./assets/workclick.svg" alt="" class="logo">
