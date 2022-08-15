@@ -19,13 +19,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 2rem;
-    div:nth-of-type(1) {
-      background: url('/assets/recluta.svg') no-repeat center center;
-      background-size: 80%;
-      @include ui.desktop {
-        background-size: 45%;
-      }
-    }
   }
   &:nth-of-type(2) {
     @extend .content-container;
