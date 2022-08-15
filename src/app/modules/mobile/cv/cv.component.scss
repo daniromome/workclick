@@ -1,0 +1,69 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.cv {
+  @include ui.flex(column);
+  @include ui.full(0, height);
+  &-title {
+    @include ui.grid(items);
+    padding: 2rem;
+  }
+  &-content {
+    @include ui.grid();
+    @include ui.full(0, height);
+    grid-template-rows: auto 1fr;
+    &-title {
+      padding: 1rem 2rem
+    }
+    &-form {
+      padding: 0.1rem 2rem
+    }
+  }
+  &-consent {
+    @include ui.flex(column, true);
+    height: 62.5vh;
+    p {
+      @include ui.full(20%, width);
+      text-align: justify;
+    }
+  }
+  &-buttons {
+    @include ui.flex(column, true);
+    gap: ui.$input-margin
+  }
+}
+
+
+.logo {
+  @include ui.full(0, width);
+}
+
+::ng-deep .mat-tab-body-wrapper {
+  height: 100%;
+}
+
+.full {
+  @include ui.full(0, width);
+}
+
+::ng-deep textarea.mat-input-element {
+  resize: none !important;
+  height: 20vh;
+}
+
+.fixed-bottom-right {
+  position: absolute;
+  right: calc(50% - 28px);
+  bottom: 2rem;
+}
+
+.overflow {
+  @include ui.flex(column);
+  gap: 2rem;
+  overflow-y: scroll;
+  max-height: 100%;
+  padding: 0.1rem 2rem 2rem 2rem;
+}
+
+.file-input {
+  display: none;
+}

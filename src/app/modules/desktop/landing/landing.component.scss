@@ -1,0 +1,113 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.landing {
+  display: grid;
+  gap: 2.5rem;
+  background-color: #F5F5F5;
+  padding: 2.5rem 0;
+  max-width: 100%;
+}
+
+.content-container {
+  margin: 0 4rem;
+  background-color: white;
+  isolation: isolate;
+  gap: 2rem;
+  &:nth-of-type(1) {
+    @extend .content-container;
+    @include ui.rotated-background('/assets/1.png', 180deg, 35%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem;
+    div:nth-of-type(1) {
+      background: url('/assets/recluta.svg') no-repeat center center;
+      background-size: 80%;
+      @include ui.desktop {
+        background-size: 45%;
+      }
+    }
+  }
+  &:nth-of-type(2) {
+    @extend .content-container;
+    @include ui.rotated-background('/assets/2.png', 0deg, 40%);
+    @include ui.flex(column, true);
+    padding: 0 4rem 4rem 4rem;
+  }
+  &:nth-of-type(3) {
+    @extend .content-container;
+    @include ui.rotated-background('/assets/3.png', 180deg, 35%);
+    padding: 4rem;
+  }
+  &:nth-of-type(4) {
+    @extend .content-container;
+    @include ui.flex(column);
+    padding: 4rem;
+    .space-between {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.cards-container {
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.center-text {
+  text-align: center;
+  p { text-align: center; }
+  &:first-of-type {
+    padding-top: 4rem;
+  }
+}
+
+.ad {
+  height: 65vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+.logo {
+  height: 4rem;
+  width: auto;
+  margin: 2rem;
+}
+
+.logo-carousel {
+  height: 4rem;
+}
+
+.logo-footer {
+  height: 2rem;
+  align-self: flex-start;
+}
+
+.enterprises {
+  @include ui.full(0, width);
+  @include ui.grid(items);
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.button-container {
+  @include ui.flex(row, true);
+  gap: 1rem;
+  div {
+    cursor: pointer;
+    @include ui.grid(items);
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: #F5F5F5;
+    border-radius: 1.5rem;
+    img {
+      height: 1.5rem;
+    }
+  }
+}
+
+::ng-deep.mat-menu-panel {
+  max-width: 22.5rem !important;
+}
+

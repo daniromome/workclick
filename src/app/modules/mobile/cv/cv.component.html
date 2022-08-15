@@ -1,0 +1,150 @@
+<div class="cv">
+  <form [formGroup]="form" class="full-height">
+    <mat-tab-group mat-align-tabs="center" mat-stretch-tabs headerPosition="below" class="full-height">
+      <mat-tab label="1">
+        <div class="cv-content">
+          <h4 class="cv-content-title">Información Personal</h4>
+          <div class="cv-content-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Número de Contacto</mat-label>
+              <input matInput formControlName="phone">
+              <mat-error>El número de contacto es inválido</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="birthdate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Dirección</mat-label>
+              <input matInput formControlName="address">
+              <mat-error>La dirección es inválida</mat-error>
+            </mat-form-field>
+            <ng-container formGroupName="cv">
+              <mat-form-field appearance="outline" class="full">
+                <mat-label>Acerca de tí</mat-label>
+                <textarea matInput placeholder="Cuéntanos quién eres ;)" formControlName="about"></textarea>
+              </mat-form-field>
+            </ng-container>
+            <input type="file" class="file-input" (change)="onFileSelected($event)" #fileInput/>
+            <div class="cv-buttons">
+              <button mat-stroked-button color="accent" class="full-width" (click)="fileInput.click()">
+                <mat-icon class="icon-button"> upload_file </mat-icon>
+                <span>{{ this.form.controls.cv.controls.url.value ? 'Actualizar' : 'Subir' }} CV</span>
+              </button>
+              <a mat-stroked-button color="primary" *ngIf="this.form.controls.cv.controls.url.value as cv" target="_blank" [href]="cv" class="full-width">
+                <mat-icon>picture_as_pdf</mat-icon>
+                Ver CV
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="2" formGroupName="cv">
+        <div class="cv-content" formArrayName="education">
+          <h4 class="cv-content-title">Educación</h4>
+          <div class="overflow">
+            <mat-card *ngFor="let edu of form.controls.cv.controls.education.controls; index as i" formGroupName="{{i}}">
+              <mat-card-header>
+                <mat-card-title>{{ edu.controls.career.value || 'Educación previa #' + (i + 1) }}</mat-card-title>
+                <mat-card-subtitle>{{ edu.controls.degree.value }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Grado de estudios</mat-label>
+                  <input matInput formControlName="degree" placeholder="Licenciatura, Ingeniería, etc...">
+                  <mat-error>El grado de estudios es inválido</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Carrera</mat-label>
+                  <input matInput formControlName="career">
+                  <mat-error>La carrera es inválida</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Institución</mat-label>
+                  <input matInput formControlName="at">
+                  <mat-error>La institución es inválida</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Lugar</mat-label>
+                  <input matInput formControlName="location" placeholder="Guadalajara, Jalisco">
+                  <mat-error>El lugar es inválido</mat-error>
+                </mat-form-field>
+                <wo-interval-date [form]="edu.controls.start" label="Fecha Inicio"></wo-interval-date>
+                <wo-interval-date [form]="edu.controls.end" label="Fecha Fin"></wo-interval-date>
+              </mat-card-content>
+              <mat-card-actions align="end">
+                <button mat-icon-button color="warn" (click)="removeEducationForm(i)"><mat-icon>delete</mat-icon></button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <button mat-fab class="fixed-bottom-right" (click)="newEducationForm()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-tab>
+      <mat-tab label="3" formGroupName="cv">
+        <div class="cv-content" formArrayName="experience">
+          <h4 class="cv-content-title">Experiencia Profesional</h4>
+          <div class="overflow">
+            <mat-card *ngFor="let job of form.controls.cv.controls.experience.controls; index as i" formGroupName="{{i}}">
+              <mat-card-header>
+                <mat-card-title>{{ job.controls.position.value || 'Experiencia previa #' + (i + 1) }}</mat-card-title>
+                <mat-card-subtitle>{{ job.controls.at.value }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Puesto</mat-label>
+                  <input matInput formControlName="position">
+                  <mat-error>El puesto es inválido</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Tipo de trabajo</mat-label>
+                  <mat-select formControlName="type">
+                    <mat-option value="FULLTIME">Tiempo completo</mat-option>
+                    <mat-option value="PARTTIME">Medio tiempo</mat-option>
+                    <mat-option value="INTERNSHIP">Becario</mat-option>
+                  </mat-select>
+                  <mat-error>El tipo de trabajo es inválido</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Empresa</mat-label>
+                  <input matInput formControlName="at">
+                  <mat-error>La empresa es inválida</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Lugar</mat-label>
+                  <input matInput formControlName="location" placeholder="Guadalajara, Jalisco">
+                  <mat-error>El lugar es inválido</mat-error>
+                </mat-form-field>
+                <wo-interval-date [form]="job.controls.start" label="Fecha Inicio"></wo-interval-date>
+                <wo-interval-date [form]="job.controls.end" label="Fecha Fin"></wo-interval-date>
+              </mat-card-content>
+              <mat-card-actions align="end">
+                <button mat-icon-button color="warn" (click)="removeJobForm(i)"><mat-icon>delete</mat-icon></button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <button mat-fab class="fixed-bottom-right" (click)="newPreviousJobForm()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-tab>
+      <mat-tab label="4">
+        <div class="cv-content">
+          <h4 class="cv-content-title">Finalizar</h4>
+          <div class="cv-consent">
+            <p>
+              Al guardar tus datos otorgas tu consentimiento y autorización para que las empresas visualicen tu nombre,
+              teléfono y correo electrónico ya que son los datos de contacto por los cuales se pondrán en contacto contigo.
+            </p>
+          </div>
+          <button mat-fab class="fixed-bottom-right" (click)="newPreviousJobForm()" [disabled]="form.invalid" (click)="save()">
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </form>
+</div>

@@ -1,0 +1,153 @@
+<form class="form" [formGroup]="form">
+  <h2>{{ id ? 'Actualizar' : 'Nueva' }} Vacante</h2>
+  <div class="form-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title">
+      <mat-error>El título es inválido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Empresa</mat-label>
+      <input matInput formControlName="company">
+      <mat-error>La empresa es inválida</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="address">
+      <mat-error>La dirección es inválida</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Puesto</mat-label>
+      <input matInput formControlName="position">
+      <mat-error>El puesto es inválida</mat-error>
+    </mat-form-field>
+
+    <ng-container formArrayName="salary">
+      <mat-form-field appearance="outline">
+        <mat-label>Sueldo Mínimo</mat-label>
+        <input matInput formControlName="0" (keydown)="onlyNumbers($event)">
+        <mat-error>El sueldo es inválido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Sueldo Máximo</mat-label>
+        <input matInput formControlName="1" (keydown)="onlyNumbers($event)">
+        <mat-error>El sueldo es inválido</mat-error>
+      </mat-form-field>
+    </ng-container>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo de vacante</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="FULLTIME">Tiempo completo</mat-option>
+        <mat-option value="PARTTIME">Medio tiempo</mat-option>
+        <mat-option value="INTERNSHIP">Becario</mat-option>
+      </mat-select>
+      <mat-error>El tipo de vacante es inválido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cantidad de vacantes</mat-label>
+      <input matInput formControlName="quantity" (keydown)="onlyNumbers($event)">
+      <mat-error>La cantidad es inválida</mat-error>
+    </mat-form-field>
+
+    <ng-container formArrayName="schedule">
+      <mat-form-field appearance="outline">
+        <mat-label>Hora de Entrada</mat-label>
+        <input matInput formControlName="0" placeholder="08:00">
+        <mat-error>El horario es inválido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Hora de Salida</mat-label>
+        <input matInput formControlName="1" placeholder="04:00">
+        <mat-error>El horario es inválido</mat-error>
+      </mat-form-field>
+    </ng-container>
+  </div>
+  <h2>Requisitos</h2>
+  <div class="form-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Carrera</mat-label>
+      <input matInput formControlName="career">
+      <mat-error>La carrera es inválido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Género</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="ANY">Indistinto</mat-option>
+        <mat-option value="F">Femenino</mat-option>
+        <mat-option value="M">Masculino</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <ng-container formArrayName="age">
+      <mat-form-field appearance="outline">
+        <mat-label>Edad Mínima</mat-label>
+        <input matInput formControlName="0" (keydown)="onlyNumbers($event)">
+        <mat-error *ngIf="form.controls.age.controls[0].hasError('max')">
+          La edad mínima no puede ser mayor que la edad máxima
+        </mat-error>
+        <mat-error *ngIf="form.controls.age.controls[0].hasError('min')">
+          La edad mínima debe ser por lo menos 18
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Edad Máxima</mat-label>
+        <input matInput formControlName="1" (keydown)="onlyNumbers($event)">
+        <mat-error *ngIf="form.controls.age.controls[1].hasError('min')">
+          La edad máxima no puede ser menor que la edad mínima
+        </mat-error>
+      </mat-form-field>
+    </ng-container>
+    <mat-form-field appearance="outline">
+      <mat-label>Años de Experiencia</mat-label>
+      <input matInput formControlName="experience" (keydown)="onlyNumbers($event)">
+    </mat-form-field>
+  </div>
+  <div class="form-section">
+    <div>
+      <h2>Conocimientos y habilidades</h2>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Los conocimientos y habilidades que el candidato debe tener.</mat-label>
+        <textarea matInput placeholder="Ej. Deseable conocimiento en..." formControlName="skills"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <h2>Actividades</h2>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Las actividades que el puesto de trabajo conlleva.</mat-label>
+        <textarea matInput placeholder="Ej. Apoyo en..." formControlName="activities"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <h2>Beneficios</h2>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Beneficios adicionales que ofrece la empresa.</mat-label>
+        <textarea matInput placeholder="Ej. Vales de despensa..." formControlName="benefits"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <ng-container *ngIf="quizzes.length > 0">
+    <h2>Quizzes</h2>
+    <div class="form-section-fill">
+      <mat-card *ngFor="let quiz of quizzes; index as quizIndex" class="card">
+        <mat-card-header>
+          <mat-card-title>{{ quiz.title }}</mat-card-title>
+          <mat-card-subtitle>{{ quiz.description }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <wo-list-item *ngFor="let question of quiz.questions">{{ question.prompt }}</wo-list-item>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-icon-button (click)="deleteQuiz(quizIndex)" color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-container>
+  <div class="form-actions">
+    <button mat-raised-button color="accent" (click)="newQuiz()">Agregar Quiz</button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">{{ id ? 'Actualizar' : 'Publicar' }} vacante</button>
+  </div>
+</form>

@@ -1,0 +1,7 @@
+<mat-toolbar class="toolbar mat-elevation-z3">
+  <button (click)="onMenuClick()" mat-icon-button *ngIf="loggedIn; else nobutton">
+    <mat-icon>{{ opened ? 'chevron_left' : 'menu' }}</mat-icon>
+  </button>
+  <ng-template #nobutton><span></span></ng-template>
+  <img src="./assets/workclick.svg" class="logo">
+</mat-toolbar>

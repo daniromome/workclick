@@ -11,5 +11,6 @@ export const environment = {
     root: 'http://localhost:3000/api',
     timeout: 3000
   },
+  typesense: '7lu0XbnQ6Ctesfa4G2QM6YGmDGL0YQZh',
   production: true
 };

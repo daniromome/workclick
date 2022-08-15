@@ -16,11 +16,9 @@ import { entityConfig } from './entity-metadata';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,

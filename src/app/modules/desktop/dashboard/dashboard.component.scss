@@ -1,0 +1,25 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.dashboard {
+  height: calc(100vh - 4rem);
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.panel {
+  border-right: solid 0.25px rgba(0, 0, 0, 0.12);
+  .profile {
+    padding: 2rem;
+    .profile-picture {
+      margin-right: 2rem;
+      border-radius: 50%;
+    }
+  }
+  &-navigation {
+    @include ui.flex(column);
+  }
+}
+
+.overflow {
+  overflow: scroll;
+}

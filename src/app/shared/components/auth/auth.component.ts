@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
-  selector: 'app-auth',
+  selector: 'wo-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

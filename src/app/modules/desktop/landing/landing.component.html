@@ -1,0 +1,62 @@
+<ng-container *ngIf="images && images.length > 0">
+  <ngx-glide #ngxGlide>
+    <ng-container *ngFor="let image of images">
+      <div>
+        <img class="ad" [src]="image">
+      </div>
+    </ng-container>
+  </ngx-glide>
+</ng-container>
+<div class="landing">
+  <div class="content-container">
+    <div>
+      <h2>¿Quiénes somos?</h2>
+    </div>
+    <div>
+      <img src="./assets/workclick.svg" alt="" class="logo">
+      <h3>Sobre nosotros</h3>
+      <p class="mat-body">
+        Estamos dedicados a crear herramientas esenciales para el departamento de Recursos Humanos.
+      </p>
+      <p class="mat-body">
+        Esta herramienta está diseñada principalmente para llevar un control total
+        de tus proceso de reclutamiento y selección, desde la postulación de vacantes,
+        la selección del talento ideal hasta una excelente experiencia de los
+        usuarios, todo esto desde una plataforma intuitiva y fácil de usar.
+      </p>
+    </div>
+  </div>
+  <div class="content-container">
+    <div class="center-text">
+      <h1>Nuestros servicios</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, quo. Quas modi exercitationem consequuntur quod provident maxime eos a, facilis ducimus animi aliquam deleniti odio amet tenetur! Consectetur, dicta ex!</p>
+    </div>
+    <div class="cards-container">
+      <wo-service-card *ngFor="let sub of subs$ | async" [sub]="sub"></wo-service-card>
+    </div>
+  </div>
+  <div class="content-container">
+    <div class="center-text">
+      <h1>
+        Agencias con las que trabajamos
+      </h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, quo. Quas modi exercitationem consequuntur quod provident maxime eos a, facilis ducimus animi aliquam deleniti odio amet tenetur! Consectetur, dicta ex!</p>
+    </div>
+    <div class="enterprises" *ngIf="enterprises && enterprises.length > 0">
+      <img class="logo-carousel" *ngFor="let enterprise of enterprises" [src]="enterprise">
+    </div>
+  </div>
+  <div class="content-container">
+    <img src="./assets/workclick.svg" alt="" class="logo-footer">
+    <mat-divider></mat-divider>
+    <div class="space-between full-width">
+      <span>© Workclick, 2022</span>
+      <span class="spacer-horizontal"></span>
+      <div class="button-container">
+        <div><img src="./assets/socials/facebook.svg" alt=""></div>
+        <div><img src="./assets/socials/twitter.svg" alt=""></div>
+        <div><img src="./assets/socials/whatsapp.svg" alt=""></div>
+      </div>
+    </div>
+  </div>
+</div>

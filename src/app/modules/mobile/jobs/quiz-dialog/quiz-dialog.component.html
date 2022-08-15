@@ -1,0 +1,44 @@
+<div class="dialog" *ngIf="quiz; else applied">
+  <button mat-icon-button (click)="onNoClick()" color="warn" class="dialog-close">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="dialog-header">
+    <h4>{{ quiz.title }}</h4>
+  </div>
+  <div mat-dialog-content>
+    <div class="question-container" *ngFor="let question of quiz.questions; index as i">
+      <wo-list-item>{{ question.prompt }}</wo-list-item>
+      <div class="options-container">
+        <ng-container *ngIf="question.type === 'multi'; else single">
+          <mat-checkbox
+            *ngFor="let option of question.options; index as optionIndex"
+            color="primary"
+            (change)="setMultiFormValue(i, optionIndex, $event)"
+          >{{ option.description }}</mat-checkbox>
+        </ng-container>
+        <ng-template #single>
+          <mat-radio-group aria-label="Select an option" (change)="setFormValue(i, $event)">
+            <mat-radio-button
+              *ngFor="let option of question.options; index as optionIndex"
+              [value]="optionIndex"
+              color="primary"
+            >{{ option.description }}</mat-radio-button>
+          </mat-radio-group>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" (click)="submit()">Completar Quiz</button>
+  </div>
+</div>
+
+<ng-template #applied>
+  <div class="dialog-header">
+    <h4>¡Ya aplicaste a este trabajo!</h4>
+    <span class="spacer-horizontal"></span>
+    <button mat-icon-button (click)="onNoClick()" color="warn">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</ng-template>

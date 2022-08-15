@@ -1,0 +1,30 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.options {
+  &-container {
+    @include ui.grid(items);
+  }
+  &-wrapper {
+    @include ui.flex(row, true);
+    gap: 1rem;
+    .mat-icon-button, .mat-checkbox {
+      margin-bottom: ui.$input-margin
+    }
+  }
+}
+
+.questions {
+  &-container {
+    @include ui.flex(column);
+    gap: ui.$input-margin
+  }
+  &-actions {
+    @include ui.grid();
+    gap: ui.$input-margin;
+    grid-template-columns: auto auto;
+  }
+}
+
+.mat-dialog-content {
+  padding-top: ui.$input-margin;
+}

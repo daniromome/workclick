@@ -1,0 +1,11 @@
+$toolbar-height: 4rem;
+
+.fixed-top {
+  position: fixed;
+  z-index: 2;
+  height: $toolbar-height;
+}
+
+.desktop-body {
+  padding-top: $toolbar-height;
+}

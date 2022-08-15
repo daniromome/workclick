@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable, switchMap, scheduled, asyncScheduler } from 'rxjs';
+import { Observable, switchMap, scheduled, asyncScheduler, map } from 'rxjs';
 import { User } from '../../models/user.model';
 import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environment';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,10 +18,12 @@ export class AuthService {
     handleCodeInApp: true,
     android: {
       packageName: 'me.daniromo.workclick'
-    }
+    },
+    dynamicLinkDomain: 'localhost'
   }
 
   public user$: Observable<User | undefined>
+  public loggedIn$: Observable<boolean>
 
   constructor(
     private auth: AngularFireAuth,
@@ -34,6 +37,7 @@ export class AuthService {
         return this.firestore.doc<User>(`users/${user.uid}`).valueChanges()
       })
     )
+    this.loggedIn$ = this.user$.pipe(map(u => !!u))
   }
 
   public async loginWithEmail(url: string, email: string): Promise<void> {
@@ -51,15 +55,28 @@ export class AuthService {
   }
 
   public async loginWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const credential = await this.auth.signInWithPopup(provider);
-    console.log(credential)
-    if (credential.additionalUserInfo?.profile) await this.updateUserData(this.convertUser(credential.additionalUserInfo?.profile as unknown as firebase.User))
-    console.log('authenticated', credential.user?.email)
-    this.router.navigateByUrl('dashboard')
+    const user = await GoogleAuth.signIn()
+    const oauth = firebase.auth.GoogleAuthProvider.credential(user.authentication.idToken)
+    const credential = await this.auth.signInWithCredential(oauth)
+    if (credential.additionalUserInfo?.profile && credential.user) {
+      const profile = credential.additionalUserInfo.profile as any
+      this.updateUserData({
+        uid: credential.user.uid,
+        name: profile.name,
+        photo: profile.picture,
+        email: profile.email
+      })
+    }
+    if (this.router.url === '/mobile') this.router.navigateByUrl('/mobile/cv')
+    else this.router.navigateByUrl('dashboard')
   }
 
-  private async updateUserData(user: User): Promise<void> {
+  public async logout() {
+    this.auth.signOut()
+    this.router.navigateByUrl(this.router.url.split('/')[1] === 'mobile' ? 'mobile' : '')
+  }
+
+  public async updateUserData(user: User): Promise<void> {
     const userRef: AngularFirestoreDocument<User> = this.firestore.doc(`users/${user.uid}`)
     await userRef.set(user, { merge: true })
   }
@@ -71,6 +88,13 @@ export class AuthService {
       email: user.email || '',
       photo: user.photoURL || ''
     }
+  }
+
+  public getPostUsers(post: string): Observable<User[]> {
+    return this.firestore.collection<User>(
+      'users',
+      ref => ref.where('jobs', 'array-contains', post)
+    ).get().pipe(map(users => users.docs.map(docs => docs.data())))
   }
 
 }

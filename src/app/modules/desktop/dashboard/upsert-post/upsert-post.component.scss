@@ -1,0 +1,32 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.form {
+  padding: ui.$input-margin;
+  &-section {
+    display: grid;
+    column-gap: ui.$input-margin;
+    @include ui.tablet {
+      grid-template-columns: repeat(auto-fit, minmax(204px, 1fr));
+    }
+    @include ui.desktop {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+  &-section-fill {
+    display: grid;
+    column-gap: ui.$input-margin;
+    @include ui.tablet {
+      grid-template-columns: repeat(auto-fill, minmax(204px, 1fr));
+    }
+    @include ui.desktop {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    .card {
+      margin: 0.25rem 0 ui.$input-margin 0;
+    }
+  }
+  &-actions {
+    @include ui.flex();
+    column-gap: ui.$input-margin;
+  }
+}

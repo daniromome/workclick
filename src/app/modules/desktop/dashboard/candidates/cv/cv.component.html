@@ -1,0 +1,62 @@
+<div class="dialog">
+  <button mat-icon-button (click)="onNoClick()" color="warn" class="dialog-close">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="dialog-header">
+    <img *ngIf="data.photo" [src]="data.photo" class="avatar">
+    <h4>{{ data.name }}</h4>
+  </div>
+  <div mat-dialog-content>
+    <div class="dialog-content">
+      <div class="data-container">
+        <div class="data-container-header">
+          <h4>Información Personal</h4>
+          <mat-divider></mat-divider>
+        </div>
+        <div class="data-container-content">
+          <p *ngIf="data.phone">Número de contacto: {{ data.phone }} </p>
+          <p *ngIf="data.email">Correo Electrónico: {{ data.email }}</p>
+          <p *ngIf="age">Edad: {{ age }}</p>
+          <p *ngIf="data.address">Domicilio: {{ data.address }}</p>
+          <p *ngIf="data.cv?.about">Acerca de mi: {{ data.cv?.about }}</p>
+        </div>
+      </div>
+      <div class="data-container">
+        <div class="data-container-header" *ngIf="experience">
+          <h4>Experiencia Profesional</h4>
+          <mat-divider></mat-divider>
+        </div>
+        <div class="data-container-content">
+          <ng-container *ngFor="let experience of data.cv!.experience" >
+            <mat-card *ngIf="experience.position">
+              <mat-card-header>
+                <mat-card-title>{{ experience.position }}</mat-card-title>
+                <mat-card-subtitle>{{ experience.location }} @ {{ experience.at }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>{{ experience.start.month | month }}, {{ experience.start.year }} - {{ experience.end.month | month }}, {{ experience.end.year }}</p>
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+        </div>
+      </div>
+      <div class="data-container" *ngIf="education">
+        <div class="data-container-header">
+          <h4>Educación</h4>
+          <mat-divider></mat-divider>
+        </div>
+        <div class="data-container-content">
+          <mat-card *ngFor="let education of data.cv!.education">
+            <mat-card-header>
+              <mat-card-title>{{ education.career }}</mat-card-title>
+              <mat-card-subtitle>{{ education.degree}} @ {{ education.at }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ education.start.month | month }}, {{ education.start.year }} - {{ education.end.month | month }}, {{ education.end.year }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
