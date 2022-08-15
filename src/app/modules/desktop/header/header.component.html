@@ -5,7 +5,7 @@
     <button mat-button color="primary">Nuestros servicios</button>
     <button mat-button color="primary">Contacto</button>
   </ng-container>
-  <span class="spacer"></span>
+  <span class="spacer-horizontal"></span>
   <button mat-raised-button color="primary" *ngIf="loggedIn; else logIn" (click)="logout()">Cerrar Sesión</button>
   <ng-template #logIn>
     <button mat-raised-button color="primary" [matMenuTriggerFor]="auth">Iniciar Sesión</button>

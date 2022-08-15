@@ -1,0 +1,69 @@
+<div class="dialog">
+  <button mat-icon-button (click)="onNoClick()" color="warn" class="dialog-close">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="dialog-header">
+    <h4>Nuevo Quiz</h4>
+  </div>
+  <div mat-dialog-content>
+    <form [formGroup]="form" class="flex-column">
+      <mat-form-field appearance="outline">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title">
+        <mat-error>El título es inválido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="title">
+        <mat-error>La descripción es inválida</mat-error>
+      </mat-form-field>
+      <div formArrayName="questions" class="questions-container">
+        <ng-container *ngFor="let question of form.controls.questions.controls; index as questionIndex; first as first" formGroupName="{{questionIndex}}">
+          <ng-container *ngIf="first">
+            <mat-divider></mat-divider>
+            <p>Las respuestas que selecciones en cada pregunta serán las correctas</p>
+          </ng-container>
+          <div>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Pregunta #{{ questionIndex + 1 }}</mat-label>
+              <input matInput formControlName="prompt">
+              <mat-error>La pregunta es inválida</mat-error>
+            </mat-form-field>
+            <div formArrayName="options" class="options-container">
+              <div
+                *ngFor="let option of form.controls.questions.at(questionIndex).controls.options.controls; index as optionIndex"
+                formGroupName="{{optionIndex}}"
+                class="options-wrapper"
+                >
+                <mat-checkbox formControlName="correct"></mat-checkbox>
+                <mat-form-field appearance="outline">
+                  <mat-label>Respuesta #{{optionIndex + 1}}</mat-label>
+                  <input matInput formControlName="description">
+                  <mat-error>La respuesta es inválida</mat-error>
+                </mat-form-field>
+                <button mat-icon-button color="warn" (click)="removeOption(questionIndex, optionIndex)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="questions-actions">
+            <button mat-button (click)="addOption(questionIndex)">Agregar Opción</button>
+            <button mat-flat-button color="warn" (click)="removeQuestion(questionIndex)">
+              <mat-icon>delete</mat-icon>
+              Eliminar Pregunta
+            </button>
+          </div>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="addQuestion()">Agregar Pregunta</button>
+    <span class="spacer-horizontal"></span>
+    <button mat-flat-button (click)="submit()" [disabled]="form.invalid" color="primary">
+      Guardar
+    </button>
+  </div>
+</div>

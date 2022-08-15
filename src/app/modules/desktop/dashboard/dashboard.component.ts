@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { PostEntityService } from '../../../shared/entities/services/post-entity.service';
 import { Post } from '../../../models/post.model';
@@ -12,7 +12,10 @@ import { Post } from '../../../models/post.model';
 })
 export class DashboardComponent implements OnInit {
 
-  public user$: Observable<User | undefined>;
+  private user$: Observable<User | undefined>
+  public user: User | undefined
+  private sub = new Subscription()
+  private initialized = false
 
   constructor(
     private auth: AuthService,
@@ -22,7 +25,13 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.postService.getAll();
+    this.sub.add(this.user$.subscribe(u => {
+      this.user = u;
+      if (!this.initialized && u) {
+        this.postService.getWithQuery(u.uid)
+        this.initialized = true
+      }
+    }))
   }
 
 }

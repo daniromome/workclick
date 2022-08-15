@@ -4,16 +4,15 @@ import { PostComponent } from './post.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { ListItemComponent } from './list-item/list-item.component';
-import { JobTypeModule } from '../pipes/job-type/job-type.module';
-import { GenderModule } from '../pipes/gender/gender.module';
+import { JobTypeModule } from '../../pipes/job-type/job-type.module';
+import { GenderModule } from '../../pipes/gender/gender.module';
+import { ListItemModule } from '../list-item/list-item.module';
 
 
 
 @NgModule({
   declarations: [
-    PostComponent,
-    ListItemComponent
+    PostComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +20,8 @@ import { GenderModule } from '../pipes/gender/gender.module';
     MatButtonModule,
     MatDividerModule,
     JobTypeModule,
-    GenderModule
+    GenderModule,
+    ListItemModule
   ],
   exports: [
     PostComponent

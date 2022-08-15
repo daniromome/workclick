@@ -1,0 +1,17 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.candidates-container {
+  @include ui.grid();
+  height: calc(100% - 4rem);
+  grid-template-rows: auto 1fr;
+  padding: 2rem;
+  .table-container {
+    @include ui.full(0, width);
+    height: fit-content;
+    overflow-y: scroll;
+    border-radius: 0.25rem;
+    table {
+      width: 100%;
+    }
+  }
+}

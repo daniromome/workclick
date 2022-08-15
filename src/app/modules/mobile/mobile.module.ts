@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PanelButtonModule } from '../../shared/components/panel-button/panel-button.module';
+import { EntitiesModule } from '../../shared/entities/entities.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PanelButtonModule } from '../../shared/components/panel-button/panel-bu
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    PanelButtonModule
+    PanelButtonModule,
+    EntitiesModule
   ]
 })
 export class MobileModule { }

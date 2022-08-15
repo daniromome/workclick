@@ -1,0 +1,17 @@
+@use 'node_modules/@not-or/ui' as ui;
+
+.jobs {
+  @include ui.flex(column);
+  padding: 2rem;
+  gap: calc(2rem - ui.$input-margin);
+  &-header {
+    @include ui.flex(row, true);
+    ::ng-deep.mat-icon-button {
+      margin: 0 0 ui.$input-margin 1rem;
+    }
+  }
+  &-content {
+    @include ui.flex(column);
+    gap: 2rem;
+  }
+}

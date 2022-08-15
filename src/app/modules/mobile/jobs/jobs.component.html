@@ -1,1 +1,18 @@
-<p>jobs works!</p>
+<div class="jobs">
+  <div class="jobs-header">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Buscar</mat-label>
+      <input matInput [formControl]="control">
+      <mat-error>La búsqueda es inválida</mat-error>
+    </mat-form-field>
+    <button mat-icon-button color="accent" (click)="search()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <div class="jobs-content">
+    <wo-job-card *ngFor="let job of jobs$ | async" [job]="job">
+      <button mat-button color="accent" (click)="details(job)">Ver Detalles</button>
+      <button mat-button color="primary" (click)="apply(job)" [disabled]="applied.has(job.id!)">Aplicar</button>
+    </wo-job-card>
+  </div>
+</div>

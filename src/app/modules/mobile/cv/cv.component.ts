@@ -5,14 +5,15 @@ import { NonNullableFormBuilder, FormGroup, FormControl, FormArray, Validators }
 import { JobTypeType } from '../../../shared/types/job-type';
 import { sixty, five } from '../../../shared/constants/numbers';
 import { AuthService } from '../../../services/auth/auth.service';
-import { Observable, Subscription } from 'rxjs';
+import { finalize, lastValueFrom, Observable, Subscription } from 'rxjs';
 import { JobType } from '../../../shared/enums/job-type.interface';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 
 interface UserForm extends Omit<
   FormFrom<User>,
-  'uid' | 'name' | 'email' | 'photo' | 'cv' | 'phone' | 'birthdate' | 'address'
+  'uid' | 'name' | 'email' | 'photo' | 'cv' | 'phone' | 'birthdate' | 'address' | 'jobs'
 > {
   cv: FormGroup<CVForm>
   phone: FormControl<string>
@@ -40,12 +41,15 @@ export class CvComponent implements OnInit, OnDestroy {
   public form: FormGroup<UserForm>
   private sub: Subscription = new Subscription();
   private fetched: boolean = false;
+  public task?: AngularFireUploadTask;
+  public percentage$?: Observable<number | undefined>;
 
   constructor(
     private fb: NonNullableFormBuilder,
     private auth: AuthService,
     private router: Router,
-    private toast: MatSnackBar
+    private toast: MatSnackBar,
+    private storage: AngularFireStorage
   ) {
     this.form = fb.group({
       cv: fb.group({
@@ -155,7 +159,7 @@ export class CvComponent implements OnInit, OnDestroy {
     const form = this.form.getRawValue()
     const updatedCV: CV = {
       ...form.cv,
-      experience: form.cv.experience.map(e => ({ ...e, type: JobType[e.type] }))
+      experience: form.cv.experience.filter(e => e.position).map(e => ({ ...e, type: JobType[e.type] }))
     }
     const updatedUser: User = {
       ...this.user,
@@ -166,5 +170,24 @@ export class CvComponent implements OnInit, OnDestroy {
     await this.auth.updateUserData(updatedUser)
     await this.router.navigateByUrl('/mobile/jobs')
     this.toast.open('CV digital guardado con éxito', 'OK', { duration: 2000 })
+  }
+
+  public onFileSelected(event: Event): void {
+    const files = (event.target as HTMLInputElement).files
+    if (files) {
+      const file = files.item(0)
+      if (!file || !this.user?.uid) return
+      const ref = this.storage.ref(this.user.uid);
+      this.task = this.storage.upload(this.user.uid, file);
+      this.percentage$ = this.task.percentageChanges().pipe(
+        finalize(async () =>  {
+          this.toast.open('Tu CV ha sido guardado en tu perfil', 'OK', { duration: 3000 })
+          const url = await lastValueFrom(ref.getDownloadURL())
+          console.log(url)
+          this.form.controls.cv.controls.url.setValue(url)
+        })
+      )
+      this.percentage$.subscribe()
+    }
   }
 }

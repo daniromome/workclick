@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardGuard } from './services/dashboard.guard';
-import { PostJobComponent } from './post-job/post-job.component';
+import { UpsertPostComponent } from './upsert-post/upsert-post.component';
 import { PostsComponent } from './posts/posts.component';
+import { CandidatesComponent } from './candidates/candidates.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, canActivate: [DashboardGuard], children: [
       { path: '', component: PostsComponent },
-      { path: 'new-post', component: PostJobComponent }
+      { path: 'post', component: UpsertPostComponent },
+      { path: 'candidates/:post', component: CandidatesComponent }
     ]
   }
 ];

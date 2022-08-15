@@ -1,5 +1,5 @@
 <div class="dashboard">
-  <ng-container *ngIf="user$ | async as user">
+  <ng-container>
     <div *ngIf="user" class="panel">
       <div class="flex-centered profile">
         <img
@@ -13,8 +13,7 @@
       <mat-divider></mat-divider>
       <div class="panel-navigation">
         <wo-panel-button [routerLink]="['./']" label="Vacantes" icon="assignment_ind"></wo-panel-button>
-        <wo-panel-button [routerLink]="['./new-post']" label="Nueva Vacante" icon="assignment_turned_in"></wo-panel-button>
-        <wo-panel-button [routerLink]="['./profile']" label="Perfil" icon="account_circle"></wo-panel-button>
+        <wo-panel-button [routerLink]="['./post']" label="Nueva Vacante" icon="assignment_turned_in"></wo-panel-button>
       </div>
     </div>
   </ng-container>

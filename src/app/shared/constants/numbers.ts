@@ -1,6 +1,10 @@
-export const zero = 0;
-export const one = 1;
-export const five = 5;
-export const minimumWage = 4000;
-export const minimumAge = 18;
-export const sixty = 60;
+export const zero = 0
+export const one = 1
+export const two = 2
+export const five = 5
+export const six = 6
+export const ten = 10
+export const minimumWage = 4000
+export const minimumAge = 18
+export const sixty = 60
+export const nineteenseventy = 1970

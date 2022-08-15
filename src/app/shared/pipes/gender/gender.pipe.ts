@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Gender } from '../../../enums/gender.interface';
+import { Gender } from '../../enums/gender.interface';
 
 @Pipe({
   name: 'gender'

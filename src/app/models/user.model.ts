@@ -39,4 +39,5 @@ export interface User {
   phone?: string
   birthdate?: string
   address?: string
+  jobs?: string[]
 }

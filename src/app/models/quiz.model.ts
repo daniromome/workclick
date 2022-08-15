@@ -1,9 +1,9 @@
-interface Option {
+export interface Option {
   description: string;
   correct: boolean;
 }
 
-interface Question {
+export interface Question {
   prompt: string;
   options: Option[];
 }
@@ -12,5 +12,6 @@ export interface Quiz {
   id: string;
   title: string,
   description: string,
-  questions: Question[]
+  questions: Question[],
+  post: string
 }

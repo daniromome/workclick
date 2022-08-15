@@ -2,7 +2,7 @@ import { Gender } from '../shared/enums/gender.interface';
 import { JobType } from '../shared/enums/job-type.interface';
 
 export interface Post {
-  id?: string;
+  id?: string
   title: string
   company: string
   address: string
@@ -18,4 +18,6 @@ export interface Post {
   skills: string
   activities: string
   benefits: string
+  user: string
+  applicants?: string[]
 }

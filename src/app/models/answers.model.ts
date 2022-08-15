@@ -1,6 +1,7 @@
 export interface Answers {
-  id: string;
+  id?: string;
   user: string,
   quiz: string,
-  answers: string[]
+  answers: number[][],
+  grade: number
 }

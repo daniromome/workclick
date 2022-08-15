@@ -1,5 +1,5 @@
 <form class="form" [formGroup]="form">
-  <h2>Nueva Vacante</h2>
+  <h2>{{ id ? 'Actualizar' : 'Nueva' }} Vacante</h2>
   <div class="form-section">
     <mat-form-field appearance="outline">
       <mat-label>Título</mat-label>
@@ -104,22 +104,50 @@
       <input matInput formControlName="experience" (keydown)="onlyNumbers($event)">
     </mat-form-field>
   </div>
-  <h2>Conocimientos y habilidades</h2>
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Los conocimientos y habilidades que el candidato debe tener.</mat-label>
-    <textarea matInput placeholder="Ej. Deseable conocimiento en..." formControlName="skills"></textarea>
-  </mat-form-field>
-  <h2>Actividades</h2>
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Las actividades que el puesto de trabajo conlleva.</mat-label>
-    <textarea matInput placeholder="Ej. Apoyo en..." formControlName="activities"></textarea>
-  </mat-form-field>
-  <h2>Beneficios</h2>
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Beneficios adicionales que ofrece la empresa.</mat-label>
-    <textarea matInput placeholder="Ej. Vales de despensa..." formControlName="benefits"></textarea>
-  </mat-form-field>
-  <div>
-    <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Publicar vacante</button>
+  <div class="form-section">
+    <div>
+      <h2>Conocimientos y habilidades</h2>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Los conocimientos y habilidades que el candidato debe tener.</mat-label>
+        <textarea matInput placeholder="Ej. Deseable conocimiento en..." formControlName="skills"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <h2>Actividades</h2>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Las actividades que el puesto de trabajo conlleva.</mat-label>
+        <textarea matInput placeholder="Ej. Apoyo en..." formControlName="activities"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <h2>Beneficios</h2>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Beneficios adicionales que ofrece la empresa.</mat-label>
+        <textarea matInput placeholder="Ej. Vales de despensa..." formControlName="benefits"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <ng-container *ngIf="quizzes.length > 0">
+    <h2>Quizzes</h2>
+    <div class="form-section-fill">
+      <mat-card *ngFor="let quiz of quizzes; index as quizIndex" class="card">
+        <mat-card-header>
+          <mat-card-title>{{ quiz.title }}</mat-card-title>
+          <mat-card-subtitle>{{ quiz.description }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <wo-list-item *ngFor="let question of quiz.questions">{{ question.prompt }}</wo-list-item>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-icon-button (click)="deleteQuiz(quizIndex)" color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-container>
+  <div class="form-actions">
+    <button mat-raised-button color="accent" (click)="newQuiz()">Agregar Quiz</button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">{{ id ? 'Actualizar' : 'Publicar' }} vacante</button>
   </div>
 </form>

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { JobType } from '../../../enums/job-type.interface';
+import { JobType } from '../../enums/job-type.interface';
 
 @Pipe({
   name: 'jobType'

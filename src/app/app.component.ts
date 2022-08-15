@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { App, URLOpenListenerEvent } from '@capacitor/app';
+import { App, BackButtonListenerEvent, URLOpenListenerEvent } from '@capacitor/app';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Component({
@@ -22,6 +22,12 @@ export class AppComponent {
         const route = event.url.split('.me').pop();
         if (!route) return
         this.router.navigateByUrl(route, { skipLocationChange: true });
+      })
+    })
+    App.addListener('backButton', () => {
+      this.zone.run(async () => {
+        if (this.router.url === '/mobile') await App.exitApp()
+        else window.history.back()
       })
     })
     GoogleAuth.initialize()

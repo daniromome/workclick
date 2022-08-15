@@ -1,8 +1,4 @@
 <div class="cv">
-  <div class="cv-title">
-    <img src="./assets/workclick.svg" class="logo">
-    <h4>Crea tu CV digital</h4>
-  </div>
   <form [formGroup]="form" class="full-height">
     <mat-tab-group mat-align-tabs="center" mat-stretch-tabs headerPosition="below" class="full-height">
       <mat-tab label="1">
@@ -22,7 +18,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Dirección</mat-label>
-              <input matInput formControlName="phone">
+              <input matInput formControlName="address">
               <mat-error>La dirección es inválida</mat-error>
             </mat-form-field>
             <ng-container formGroupName="cv">
@@ -31,6 +27,17 @@
                 <textarea matInput placeholder="Cuéntanos quién eres ;)" formControlName="about"></textarea>
               </mat-form-field>
             </ng-container>
+            <input type="file" class="file-input" (change)="onFileSelected($event)" #fileInput/>
+            <div class="cv-buttons">
+              <button mat-stroked-button color="accent" class="full-width" (click)="fileInput.click()">
+                <mat-icon class="icon-button"> upload_file </mat-icon>
+                <span>{{ this.form.controls.cv.controls.url.value ? 'Actualizar' : 'Subir' }} CV</span>
+              </button>
+              <a mat-stroked-button color="primary" *ngIf="this.form.controls.cv.controls.url.value as cv" target="_blank" [href]="cv" class="full-width">
+                <mat-icon>picture_as_pdf</mat-icon>
+                Ver CV
+              </a>
+            </div>
           </div>
         </div>
       </mat-tab>

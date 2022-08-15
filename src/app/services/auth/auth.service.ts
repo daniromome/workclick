@@ -90,4 +90,11 @@ export class AuthService {
     }
   }
 
+  public getPostUsers(post: string): Observable<User[]> {
+    return this.firestore.collection<User>(
+      'users',
+      ref => ref.where('jobs', 'array-contains', post)
+    ).get().pipe(map(users => users.docs.map(docs => docs.data())))
+  }
+
 }

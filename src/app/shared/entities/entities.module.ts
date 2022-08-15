@@ -36,11 +36,15 @@ export class EntitiesModule {
   constructor(
     private eds: EntityDefinitionService,
     private entityDataService: EntityDataService,
-    private postDataService: PostDataService
+    private postDataService: PostDataService,
+    private quizDataService: QuizDataService,
+    private answersDataService: AnswersDataService
   ) {
     eds.registerMetadataMap(entityMetadataMap)
     entityDataService.registerServices({
-      Post: postDataService
+      Post: postDataService,
+      Quiz: quizDataService,
+      Answers: answersDataService
     })
   }
 
